@@ -11,7 +11,6 @@ namespace LernUnityAdventure_m22_23
 
         private const float InjuredHealthPercentThreshold = 30f;
 
-
         [SerializeField] private Character _character;
 
         private Animator _animator;

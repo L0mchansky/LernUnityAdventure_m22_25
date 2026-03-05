@@ -19,7 +19,6 @@ namespace LernUnityAdventure_m24_25
             yield return new WaitUntil(() =>_medkit.IsUse);
 
             GameObject particleSystemObj = Object.Instantiate(_particlePrefab, _medkit.transform.position, Quaternion.identity);
-            particleSystemObj.SetActive(true);
 
             Object.Destroy(_medkit.gameObject);
         }
