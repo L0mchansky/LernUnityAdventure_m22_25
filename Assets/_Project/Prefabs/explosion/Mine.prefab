@@ -73,7 +73,6 @@ MonoBehaviour:
   _radiusActivation: 2
   _countdownToExplosion: 3
   _triggerType: 0
-  _cleanupType: 0
 --- !u!1001 &7687334073763037590
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -155,7 +154,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b69ab7dc4a09f094885bf950a65c44c3,
         type: 3}
       propertyPath: m_Name
-      value: Bomb
+      value: MineView
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -186,11 +185,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particlePrefab: {fileID: 479050328454720859, guid: 185296f5de90bc34eb4318cb2718715e,
     type: 3}
-  _preExplosionAudioPrefab: {fileID: 2198037227858239095, guid: 6029d657dce1f364aab375c3d45f7d1d,
-    type: 3}
-  _explosionAudioPrefab: {fileID: 6303050046757036994, guid: 13f3b3b28d3a5fe409e798773aed7181,
-    type: 3}
   _delayedExplosion: {fileID: 3512201119594181494}
+  _mineExplosion: {fileID: 8954169693590122614, guid: 32873e25bd5e8bd469b1a961bc9bb595,
+    type: 3}
+  _minePreExplosionPrefub: {fileID: 7785410276452698834, guid: f92ef73198618d849b6dc08f1b20a2e5,
+    type: 3}
 --- !u!4 &7864512971250755197 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b69ab7dc4a09f094885bf950a65c44c3,

@@ -7,13 +7,24 @@ namespace LernUnityAdventure_m22_23
         [SerializeField] private GameObject _particlePrefab;
         [SerializeField] private DelayedExplosion _delayedExplosion;
 
+        [SerializeField] private AudioSource _mineExplosion;
+        [SerializeField] private GameObject _minePreExplosionPrefub;
+        private GameObject _currentPreExplosion;
+
         private const float RatioSpeedToTime = 10f;
 
         public void Update()
         {
+            if (_delayedExplosion.IsExplodes && _currentPreExplosion == null)
+            {
+                PlayPreExplosionSfx();
+            }
+
             if (_delayedExplosion.IsExploded)
             {
                 PlayExplosionVfx();
+                StopPreExplosionSfx();
+                PlayExplosionSfx();
             }
         }
 
@@ -31,6 +42,27 @@ namespace LernUnityAdventure_m22_23
             particleSystem.startSpeed = speed;
 
             particleSystemObj.SetActive(true);
+        }
+
+        private void PlayPreExplosionSfx()
+        {
+            _currentPreExplosion = PlayClipAtPoint(_minePreExplosionPrefub, _delayedExplosion.transform.position);
+        }
+
+        private void StopPreExplosionSfx()
+        {
+            _currentPreExplosion.GetComponent<AudioSource>().Stop();
+            Destroy(_currentPreExplosion);
+        }
+
+        private void PlayExplosionSfx()
+        {
+            AudioSource.PlayClipAtPoint(_mineExplosion.clip, _delayedExplosion.transform.position, _mineExplosion.volume);
+        }
+
+        private GameObject PlayClipAtPoint(GameObject audioSourcePrefab, Vector3 position)
+        {
+            return Instantiate(audioSourcePrefab, position, Quaternion.identity);
         }
     }
 }
