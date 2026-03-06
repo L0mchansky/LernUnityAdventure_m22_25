@@ -1,5 +1,4 @@
-﻿using LernUnityAdventure_m22_23;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace LernUnityAdventure_m24_25
 {
@@ -18,10 +17,9 @@ namespace LernUnityAdventure_m24_25
         public void OnTriggerEnter(Collider collider)
         {
             if (collider.TryGetComponent(out IHealable componentHealable) == false) return;
-            if (collider.TryGetComponent(out Character character) == false) return;
 
             _isUse = true;
-            componentHealable.OnHealing(_healingValue, character.ComponentHealth);
+            componentHealable.OnHealing(_healingValue);
         }
     }
 }

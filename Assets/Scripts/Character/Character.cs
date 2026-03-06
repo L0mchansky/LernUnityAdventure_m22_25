@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 using LernUnityAdventure_m24_25;
 
 namespace LernUnityAdventure_m22_23
@@ -16,9 +17,9 @@ namespace LernUnityAdventure_m22_23
         public bool IsWalking => _isWalking;
         public Vector3 Destination => _navMeshAgent.destination;
         public Vector3 Velocity => _navMeshAgent.velocity;
-        public float CurrentHealth => _health.CurrentHealth;
-        public float PercentageHealth => _health.PercentageHealth;
-        public bool IsLife => _health.IsLife;
+        public float CurrentHealth => _componentHealth.CurrentHealth;
+        public float PercentageHealth => _componentHealth.PercentageHealth;
+        public bool IsLife => _componentHealth.IsLife;
 
         public void Awake()
         {
@@ -42,8 +43,8 @@ namespace LernUnityAdventure_m22_23
 
         public void TakeDamage(float damage)
         {
-            float newHealth = _health.CurrentHealth - damage;
-            _health.SetHealth(newHealth);
+            float newHealth = CurrentHealth - damage;
+            _componentHealth.SetHealth(newHealth);
 
             _characterView.PlayTakeDamage();
         }
@@ -64,10 +65,10 @@ namespace LernUnityAdventure_m22_23
             }
         }
 
-        public void OnHealing(float healingValue, ComponentHealth componentHealth)
+        public void OnHealing(float healingValue)
         {
-            float newHealth = componentHealth.CurrentHealth + healingValue;
-            componentHealth.SetHealth(newHealth);
+            float newHealth = CurrentHealth + healingValue;
+            _componentHealth.SetHealth(newHealth);
         }
     }
 }
