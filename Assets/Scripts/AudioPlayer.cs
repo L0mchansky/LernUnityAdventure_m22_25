@@ -7,10 +7,8 @@ namespace LernUnityAdventure_m24_25
     public class AudioPlayer: MonoBehaviour
     {
         [SerializeField] private AudioSource _mainMelody;
-        [SerializeField] private AudioSource _characterWalk;
         [SerializeField] private AudioSource _mineExplosion;
         [SerializeField] private GameObject _minePreExplosionPrefub;
-        [SerializeField] private AudioSource _medkitUse;
 
         [SerializeField] private MedkitSpawner _medkitSpawner;
         [SerializeField] private Character _character;
@@ -23,35 +21,8 @@ namespace LernUnityAdventure_m24_25
 
         private void Update()
         {
-            PlayCharacterAudio();
-            PlayMedKitsAudio();
             //PlayDelayedEpxlosionAudio();
             //ControlDelayedExplosionAudio();
-        }
-
-        private void PlayCharacterAudio()
-        {
-            if (_character.IsWalking)
-            {
-                if (_characterWalk.isPlaying == false)
-                    _characterWalk.Play();
-            }
-                else
-            {
-                if (_characterWalk.isPlaying)
-                    _characterWalk.Stop();
-            }
-        }
-
-        private void PlayMedKitsAudio()
-        {
-            foreach (var medkit in _medkitSpawner.Medkits)
-            {
-                if (medkit.IsUse)
-                {
-                    AudioSource.PlayClipAtPoint(_medkitUse.clip, medkit.transform.position, _medkitUse.volume);
-                }   
-            }
         }
 
         private void PlayDelayedEpxlosionAudio()

@@ -12,6 +12,7 @@ namespace LernUnityAdventure_m22_23
         private const float InjuredHealthPercentThreshold = 30f;
 
         [SerializeField] private Character _character;
+        [SerializeField] private AudioSource _characterWalk;
 
         private Animator _animator;
 
@@ -24,6 +25,12 @@ namespace LernUnityAdventure_m22_23
         }
 
         public void Update()
+        {
+            PlayAnimations();
+            PlayAudio();
+        }
+
+        private void PlayAnimations()
         {
             if (_character.IsWalking)
             {
@@ -39,7 +46,7 @@ namespace LernUnityAdventure_m22_23
                 PlayInjured();
             }
 
-            if (_isPlayedInjure == true && _character.PercentageHealth >= InjuredHealthPercentThreshold) 
+            if (_isPlayedInjure == true && _character.PercentageHealth >= InjuredHealthPercentThreshold)
             {
                 StopInjured();
             }
@@ -47,6 +54,19 @@ namespace LernUnityAdventure_m22_23
             if (_isPlayedDie == false && _character.IsLife == false)
             {
                 PlayDie();
+            }
+        }
+        private void PlayAudio()
+        {
+            if (_character.IsWalking)
+            {
+                if (_characterWalk.isPlaying == false)
+                    _characterWalk.Play();
+            }
+            else
+            {
+                if (_characterWalk.isPlaying)
+                    _characterWalk.Stop();
             }
         }
 
