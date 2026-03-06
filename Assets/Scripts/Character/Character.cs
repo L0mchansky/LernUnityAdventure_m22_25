@@ -1,16 +1,15 @@
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.TextCore.Text;
+using LernUnityAdventure_m24_25;
 
 namespace LernUnityAdventure_m22_23
 {
-    public class Character : MonoBehaviour, IDamageable, IExplodable, IHasHealth
+    public class Character : MonoBehaviour, IDamageable, IExplodable, IHasHealth, IHealable
     {
         [SerializeField] private float _maxHealth;
         [SerializeField] private CharacterView _characterView;
         [SerializeField] private NavMeshAgent _navMeshAgent;
 
-        private ComponentHealth _health;
+        private ComponentHealth _componentHealth;
         private bool _isWalking;
         private const float VelocityMagnitudeThreshold = 0.05f;
 
@@ -23,7 +22,7 @@ namespace LernUnityAdventure_m22_23
 
         public void Awake()
         {
-            _health = new ComponentHealth(_maxHealth);
+            _componentHealth = new ComponentHealth(_maxHealth);
         }
 
         public void Update()
@@ -49,7 +48,7 @@ namespace LernUnityAdventure_m22_23
             _characterView.PlayTakeDamage();
         }
 
-        public void OnExplode(ExplosionData data, Collider collider)
+        public void OnExplode(ExplosionData data)
         {
             TakeDamage(data.Damage);
         }
@@ -63,6 +62,12 @@ namespace LernUnityAdventure_m22_23
             {
                 _isWalking = false;
             }
+        }
+
+        public void OnHealing(float healingValue, ComponentHealth componentHealth)
+        {
+            float newHealth = componentHealth.CurrentHealth + healingValue;
+            componentHealth.SetHealth(newHealth);
         }
     }
 }

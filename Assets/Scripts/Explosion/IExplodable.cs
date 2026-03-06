@@ -4,6 +4,6 @@ namespace LernUnityAdventure_m22_23
 {
     public interface IExplodable
     {
-        public void OnExplode(ExplosionData data, Collider collider);
+        public void OnExplode(ExplosionData data);
     }
 }

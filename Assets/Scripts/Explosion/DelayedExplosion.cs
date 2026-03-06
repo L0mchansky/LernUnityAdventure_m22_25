@@ -1,3 +1,5 @@
+using LernUnityAdventure_m24_25;
+using System;
 using UnityEngine;
 
 namespace LernUnityAdventure_m22_23
@@ -11,25 +13,67 @@ namespace LernUnityAdventure_m22_23
         [SerializeField] private float _radiusActivation;
         [SerializeField] private float _countdownToExplosion;
 
-        private const float TimeExpiredThreshold = 0f;
+        [SerializeField] private ExplosionTriggerTypes _triggerType;
+        [SerializeField] private ExplosionCleanupTypes _cleanupType;
 
-        private bool _isExploding = false;
+        private IExplosionTriggerStrategy _trigger;
+        private IExplosionCleanupStrategy _cleanup;
+
+        private bool _isExplodes = false;
         private bool _isExploded = false;
 
         public float RadiusExplosion => _radiusExplosion;
         public bool IsExploded => _isExploded;
+        public bool IsExplodes => _isExplodes;
+
+        //TODO: Убрать
+        public bool HasVfxPlayed => _hasVfxPlayed;
+        public void SetVfxPlayed() => _hasVfxPlayed = true;
 
         public void Awake()
         {
+            _trigger = CreateTrigger();
+            _cleanup = CreateCleanup();
+
+            _trigger.Initialize(this);
+            _cleanup.Initialize(this);
+
             if (TryGetComponent(out SphereCollider collider))
             {
                 collider.radius = _radiusActivation;
             }
         }
 
+        private IExplosionCleanupStrategy CreateCleanup()
+        {
+            switch (_cleanupType)
+            {
+                case ExplosionCleanupTypes.Vfx:
+                    return new WaitVfxCleanup();
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private IExplosionTriggerStrategy CreateTrigger()
+        {
+            switch (_triggerType)
+            {
+                case ExplosionTriggerTypes.Timer:
+                    return new TimerExplosionTrigger(_countdownToExplosion);
+
+                case ExplosionTriggerTypes.Coroutine:
+                    return new CoroutineExplosionTrigger(this, _countdownToExplosion);
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
         public void Update()
         {
-            if (_isExploding == true)
+/*            if (_isExploding == true)
             {
                 _countdownToExplosion -= Time.deltaTime;
             }
@@ -43,14 +87,16 @@ namespace LernUnityAdventure_m22_23
             {
                 Explode();
                 _isExploded = true;
-            }
+            }*/
+            _trigger.Tick(Time.deltaTime);
+            _cleanup.Tick(Time.deltaTime);
         }
 
         public void OnTriggerEnter(Collider other)
         {
-            if (_isExploding) return;
+            if (_isExplodes) return;
 
-            _isExploding = true;
+            _isExplodes = true;
         }
 
         public void OnDrawGizmos()
@@ -62,8 +108,10 @@ namespace LernUnityAdventure_m22_23
             Gizmos.DrawWireSphere(transform.position, _radiusActivation);
         }
 
-        private void Explode()
+        public void Explode()
         {
+            _isExplodes = false;
+
             Collider[] targets = Physics.OverlapSphere(transform.position, _radiusExplosion);
             ExplosionData data = new ExplosionData(transform.position, _force, _radiusExplosion, _damage);
 
@@ -72,8 +120,10 @@ namespace LernUnityAdventure_m22_23
                 if (target.TryGetComponent(out IExplodable explodable) == false)
                     continue;
 
-                explodable.OnExplode(data, target);
+                explodable.OnExplode(data);
             }
+
+            _isExploded = true;
         }
     }
 }

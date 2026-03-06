@@ -11,10 +11,10 @@ namespace LernUnityAdventure_m22_23
 
         private const float InjuredHealthPercentThreshold = 30f;
 
-
         [SerializeField] private Character _character;
 
         private Animator _animator;
+
         private bool _isPlayedInjure = false;
         private bool _isPlayedDie = false;
 
@@ -37,6 +37,11 @@ namespace LernUnityAdventure_m22_23
             if (_isPlayedInjure == false && _character.PercentageHealth <= InjuredHealthPercentThreshold)
             {
                 PlayInjured();
+            }
+
+            if (_isPlayedInjure == true && _character.PercentageHealth >= InjuredHealthPercentThreshold) 
+            {
+                StopInjured();
             }
 
             if (_isPlayedDie == false && _character.IsLife == false)
@@ -63,8 +68,19 @@ namespace LernUnityAdventure_m22_23
         public void PlayInjured()
         {
             _isPlayedInjure = true;
+            ChangeInjured(1);
+        }
+
+        public void StopInjured()
+        {
+            _isPlayedInjure = false;
+            ChangeInjured(0);
+        }
+
+        private void ChangeInjured(int layerWeight)
+        {
             int injuredLayerIndex = _animator.GetLayerIndex(_injuredLayerName);
-            _animator.SetLayerWeight(injuredLayerIndex, 1);
+            _animator.SetLayerWeight(injuredLayerIndex, layerWeight);
         }
 
         public void PlayDie()
