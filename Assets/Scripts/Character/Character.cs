@@ -8,16 +8,15 @@ namespace LernUnityAdventure_m22_23
     {
         [SerializeField] private float _maxHealth;
         [SerializeField] private CharacterView _characterView;
+        [SerializeField] private NavMeshAgent _navMeshAgent;
 
         private ComponentHealth _health;
         private bool _isWalking;
-        private Vector3 _destination;
-        private Vector3 _velocity;
         private const float VelocityMagnitudeThreshold = 0.05f;
 
         public bool IsWalking => _isWalking;
-        public Vector3 Destination => _destination;
-        public Vector3 Velocity => _velocity;
+        public Vector3 Destination => _navMeshAgent.destination;
+        public Vector3 Velocity => _navMeshAgent.velocity;
         public float CurrentHealth => _health.CurrentHealth;
         public float PercentageHealth => _health.PercentageHealth;
         public bool IsLife => _health.IsLife;
@@ -34,12 +33,12 @@ namespace LernUnityAdventure_m22_23
 
         public void SetDestination(Vector3 value)
         {
-            _destination = value;
+            _navMeshAgent.destination = value;
         }
 
         public void SetVelocity(Vector3 value)
         {
-            _velocity = value;
+            _navMeshAgent.velocity = value;
         }
 
         public void TakeDamage(float damage)
@@ -56,7 +55,7 @@ namespace LernUnityAdventure_m22_23
         }
         private void OnWalking()
         {
-            if (_velocity.magnitude >= VelocityMagnitudeThreshold)
+            if (Velocity.magnitude >= VelocityMagnitudeThreshold)
             {
                 _isWalking = true;
             }

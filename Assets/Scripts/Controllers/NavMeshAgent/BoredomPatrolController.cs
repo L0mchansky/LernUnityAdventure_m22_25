@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 namespace LernUnityAdventure_m22_23
 {
-    public class BoredomPatrolController : NavMeshAgentController
+    public class BoredomPatrolController : Controller
     {
         private const int MaxSampleAttempts = 30;
 
@@ -23,22 +23,18 @@ namespace LernUnityAdventure_m22_23
             float angularSpeed,
             float acceleration)
         {
-            AddNavMeshAgentComponent(character, speed, angularSpeed, acceleration);
-
             _character = character;
             _patrolRadius = patrolRadius;
             _arrivalThreshold = arrivalThreshold;
             _retryDelayAfterFail = retryDelayAfterFail;
 
-            SetDestination(_character, _character.transform.position);
+            _character.SetDestination(_character.transform.position);
         }
 
         protected override void UpdateLogic(float deltaTime)
         {
             if (!_character.IsLife)
                 return;
-
-            SetVelocity(_character);
 
             if (!ReachedDestination())
                 return;
@@ -62,7 +58,7 @@ namespace LernUnityAdventure_m22_23
 
             if (point.HasValue)
             {
-                SetDestination(_character, point.Value);
+                _character.SetDestination(point.Value);
                 _nextPatrolAttemptTime = 0f;
             }
             else

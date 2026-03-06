@@ -26,17 +26,17 @@ namespace LernUnityAdventure_m22_23
 
         private void Awake()
         {
+
             _navmeshCharacterController =
                 new NavMeshCharacterController(
                     _character,
-                    this,
                     _speed,
                     _angularSpeed,
                     _acceleration
                     );
 
             _boredomPatrolController =
-                new BoredomPatrolController(
+                new BoredomPatrolController(        
                     _character,
                     _patrolRadius,
                     _arrivalThreshold,
@@ -95,7 +95,5 @@ namespace LernUnityAdventure_m22_23
                 _idleTimer = 0;
             }
         }
-
-        public Ray GetRayFromScreen() => Camera.main.ScreenPointToRay(Input.mousePosition);
     }
 }
