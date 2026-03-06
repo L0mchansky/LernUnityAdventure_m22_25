@@ -15,14 +15,12 @@ namespace LernUnityAdventure_m22_23
         [SerializeField] private Character _character;
 
         private Animator _animator;
-        private ComponentHealth _health;
         private bool _isPlayedInjure = false;
         private bool _isPlayedDie = false;
 
         public void Awake()
         {
             _animator = GetComponent<Animator>();
-            _health = _character.Health;
         }
 
         public void Update()
@@ -36,12 +34,12 @@ namespace LernUnityAdventure_m22_23
                 StopWalking();
             }
 
-            if (_isPlayedInjure == false && _health.PercentageHealth <= InjuredHealthPercentThreshold)
+            if (_isPlayedInjure == false && _character.PercentageHealth <= InjuredHealthPercentThreshold)
             {
                 PlayInjured();
             }
 
-            if (_isPlayedDie == false && _health.IsLife == false)
+            if (_isPlayedDie == false && _character.IsLife == false)
             {
                 PlayDie();
             }

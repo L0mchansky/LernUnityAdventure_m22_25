@@ -19,7 +19,6 @@ namespace LernUnityAdventure_m22_23
             if (_delayedExplosion.IsExploded)
             {
                 PlayExplosionVfx();
-                _delayedExplosion.SetVfxPlayed();
             }
         }
 

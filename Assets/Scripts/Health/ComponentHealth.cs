@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace LernUnityAdventure_m22_23
 {
     public class ComponentHealth

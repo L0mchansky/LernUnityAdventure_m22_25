@@ -15,12 +15,9 @@ namespace LernUnityAdventure_m22_23
 
         private bool _isExploding = false;
         private bool _isExploded = false;
-        private bool _hasVfxPlayed = false;
 
         public float RadiusExplosion => _radiusExplosion;
         public bool IsExploded => _isExploded;
-
-        public void SetVfxPlayed() => _hasVfxPlayed = true;
 
         public void Awake()
         {
@@ -37,16 +34,15 @@ namespace LernUnityAdventure_m22_23
                 _countdownToExplosion -= Time.deltaTime;
             }
 
-            if (_isExploded == false && _countdownToExplosion <= TimeExpiredThreshold)
+            if (_isExploded == true)
             {
-                _isExploded = true;
-                Explode();
+                Destroy(gameObject);
             }
 
-            if (_hasVfxPlayed == true)
+            if (_isExploded == false && _countdownToExplosion <= TimeExpiredThreshold)
             {
-                _isExploding = false;
-                Destroy(gameObject);
+                Explode();
+                _isExploded = true;
             }
         }
 
