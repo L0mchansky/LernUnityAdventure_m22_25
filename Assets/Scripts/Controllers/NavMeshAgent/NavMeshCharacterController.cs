@@ -12,7 +12,7 @@ namespace LernUnityAdventure_m22_23
         private readonly Character _character;
         private readonly ScreenUtility _utility;
 
-        public NavMeshCharacterController(Character character, float speed, float angularSpeed, float acceleration)
+        public NavMeshCharacterController(Character character)
         {
             _layerMaskGround = LayerMask.GetMask(LayerMaskName);
             _character = character;

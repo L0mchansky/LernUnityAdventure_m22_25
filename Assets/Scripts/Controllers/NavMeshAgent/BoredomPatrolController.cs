@@ -18,10 +18,7 @@ namespace LernUnityAdventure_m22_23
             Character character,
             float patrolRadius,
             float arrivalThreshold,
-            float retryDelayAfterFail,
-            float speed,
-            float angularSpeed,
-            float acceleration)
+            float retryDelayAfterFail)
         {
             _character = character;
             _patrolRadius = patrolRadius;
