@@ -2741,12 +2741,12 @@ Transform:
   m_GameObject: {fileID: 482123252}
   serializedVersion: 2
   m_LocalRotation: {x: 0.35355338, y: 0.35355338, z: -0.1464466, w: 0.8535535}
-  m_LocalPosition: {x: 1.22, y: 1.6789999, z: -11.97}
+  m_LocalPosition: {x: -3.0370252, y: 10.201055, z: -14.219673}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2129745620}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1209432829}
   m_LocalEulerAnglesHint: {x: 45, y: 45, z: 0}
 --- !u!1001 &495981893
 PrefabInstance:
@@ -6137,6 +6137,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2139230753}
+  - {fileID: 482123254}
+  - {fileID: 1370028285}
+  - {fileID: 2005630371}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1209432830
@@ -6152,9 +6155,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _character: {fileID: 384886725}
-  _speed: 5
-  _angularSpeed: 500
-  _acceleration: 500
   _patrolRadius: 10
   _retryDelayAfterFail: 1
   _idleTimeToPatrol: 10
@@ -7082,11 +7082,11 @@ Transform:
   m_GameObject: {fileID: 1370028284}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.2570252, y: -8.522055, z: 2.249673}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1209432829}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1372583127
 PrefabInstance:
@@ -10265,14 +10265,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2005630370}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.967237, y: 7.503916, z: -9.026084}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.710212, y: 16.02597, z: -11.275757}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1260254955}
   - {fileID: 274843066}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1209432829}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2005630372
 MonoBehaviour:
@@ -10885,11 +10885,8 @@ SceneRoots:
   - {fileID: 84936632}
   - {fileID: 384886721}
   - {fileID: 1209432829}
-  - {fileID: 482123254}
-  - {fileID: 1370028285}
   - {fileID: 6007477324755526685}
   - {fileID: 890782104}
   - {fileID: 465171646}
   - {fileID: 1650453253}
   - {fileID: 1730900793}
-  - {fileID: 2005630371}

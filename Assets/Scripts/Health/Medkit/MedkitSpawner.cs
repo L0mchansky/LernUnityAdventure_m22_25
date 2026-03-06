@@ -18,7 +18,7 @@ namespace LernUnityAdventure_m24_25
         [SerializeField] private float _radiusToSpawn = 1f;
         [SerializeField] private float _healingValue = 10f;
 
-        private List<Medkit> _medkits;
+        private List<Medkit> _medkits = new();
         private Coroutine _runCoroutine;
         private bool _isActive = false;
 
@@ -29,6 +29,26 @@ namespace LernUnityAdventure_m24_25
             if (Input.GetKeyDown(KeyCode.F))
             {
                 ToggleSpawner();
+            }
+
+            if (_medkits.Count > 0)
+            {
+                DestroyMedkit();
+            }
+        }
+
+        private void DestroyMedkit()
+        {
+
+            for (int i = _medkits.Count - 1; i >= 0; i--)
+            {
+                var medkit = _medkits[i];
+
+                if (medkit.IsUse)
+                {
+                    _medkits.RemoveAt(i);
+                    Destroy(medkit.gameObject);
+                }
             }
         }
 

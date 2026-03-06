@@ -8,20 +8,13 @@ namespace LernUnityAdventure_m24_25
     {
         [SerializeField] private AudioSource _mainMelody;
         [SerializeField] private AudioSource _characterWalk;
-
         [SerializeField] private AudioSource _mineExplosion;
         [SerializeField] private GameObject _minePreExplosionPrefub;
-
         [SerializeField] private AudioSource _medkitUse;
 
         [SerializeField] private MedkitSpawner _medkitSpawner;
-
-
         [SerializeField] private Character _character;
         
-        //TODO: Вынести в MedkitSpawner.cs
-        private List<Medkit> _medkits;
-
         private List<DelayedExplosion> _delayedExplosions;
         private List<DelayedExplosion> _delayedExplodes;
 
@@ -32,8 +25,8 @@ namespace LernUnityAdventure_m24_25
         {
             PlayCharacterAudio();
             PlayMedKitsAudio();
-            PlayDelayedEpxlosionAudio();
-            ControlDelayedExplosionAudio();
+            //PlayDelayedEpxlosionAudio();
+            //ControlDelayedExplosionAudio();
         }
 
         private void PlayCharacterAudio()
@@ -52,12 +45,11 @@ namespace LernUnityAdventure_m24_25
 
         private void PlayMedKitsAudio()
         {
-            foreach (var medkit in _medkits)
+            foreach (var medkit in _medkitSpawner.Medkits)
             {
                 if (medkit.IsUse)
                 {
                     AudioSource.PlayClipAtPoint(_medkitUse.clip, medkit.transform.position, _medkitUse.volume);
-                    _medkits.Remove(medkit);
                 }   
             }
         }
