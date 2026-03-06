@@ -14,10 +14,8 @@ namespace LernUnityAdventure_m22_23
         [SerializeField] private float _countdownToExplosion;
 
         [SerializeField] private ExplosionTriggerTypes _triggerType;
-        [SerializeField] private ExplosionCleanupTypes _cleanupType;
 
         private IExplosionTriggerStrategy _trigger;
-        private IExplosionCleanupStrategy _cleanup;
 
         private bool _isExplodes = false;
         private bool _isExploded = false;
@@ -26,33 +24,14 @@ namespace LernUnityAdventure_m22_23
         public bool IsExploded => _isExploded;
         public bool IsExplodes => _isExplodes;
 
-        //TODO: Убрать
-        public bool HasVfxPlayed => _hasVfxPlayed;
-        public void SetVfxPlayed() => _hasVfxPlayed = true;
-
         public void Awake()
         {
             _trigger = CreateTrigger();
-            _cleanup = CreateCleanup();
-
             _trigger.Initialize(this);
-            _cleanup.Initialize(this);
 
             if (TryGetComponent(out SphereCollider collider))
             {
                 collider.radius = _radiusActivation;
-            }
-        }
-
-        private IExplosionCleanupStrategy CreateCleanup()
-        {
-            switch (_cleanupType)
-            {
-                case ExplosionCleanupTypes.Vfx:
-                    return new WaitVfxCleanup();
-
-                default:
-                    throw new ArgumentOutOfRangeException();
             }
         }
 
@@ -73,23 +52,14 @@ namespace LernUnityAdventure_m22_23
 
         public void Update()
         {
-/*            if (_isExploding == true)
-            {
-                _countdownToExplosion -= Time.deltaTime;
-            }
-
             if (_isExploded == true)
             {
                 Destroy(gameObject);
             }
-
-            if (_isExploded == false && _countdownToExplosion <= TimeExpiredThreshold)
+            else
             {
-                Explode();
-                _isExploded = true;
-            }*/
-            _trigger.Tick(Time.deltaTime);
-            _cleanup.Tick(Time.deltaTime);
+                _trigger.Tick(Time.deltaTime);
+            }
         }
 
         public void OnTriggerEnter(Collider other)

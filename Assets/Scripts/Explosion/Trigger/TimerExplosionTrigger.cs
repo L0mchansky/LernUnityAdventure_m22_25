@@ -7,7 +7,6 @@ namespace LernUnityAdventure_m24_25
         private float _time;
         private DelayedExplosion _explosion;
 
-
         public TimerExplosionTrigger(float time)
         {
             _time = time;
