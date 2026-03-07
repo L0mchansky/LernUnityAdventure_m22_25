@@ -25,6 +25,7 @@ namespace LernUnityAdventure_m22_23
                     );
 
             _switchController.Enable();
+
         }
 
         public void Update()

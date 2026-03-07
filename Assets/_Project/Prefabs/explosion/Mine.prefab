@@ -186,7 +186,7 @@ MonoBehaviour:
   _particlePrefab: {fileID: 479050328454720859, guid: 185296f5de90bc34eb4318cb2718715e,
     type: 3}
   _delayedExplosion: {fileID: 3512201119594181494}
-  _mineExplosion: {fileID: 8954169693590122614, guid: 32873e25bd5e8bd469b1a961bc9bb595,
+  _mineExplosionPrefub: {fileID: 2885409166677270006, guid: 32873e25bd5e8bd469b1a961bc9bb595,
     type: 3}
   _minePreExplosionPrefub: {fileID: 7785410276452698834, guid: f92ef73198618d849b6dc08f1b20a2e5,
     type: 3}

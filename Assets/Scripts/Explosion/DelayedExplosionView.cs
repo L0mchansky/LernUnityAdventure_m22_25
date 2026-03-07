@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace LernUnityAdventure_m22_23
 {
@@ -7,7 +8,7 @@ namespace LernUnityAdventure_m22_23
         [SerializeField] private GameObject _particlePrefab;
         [SerializeField] private DelayedExplosion _delayedExplosion;
 
-        [SerializeField] private AudioSource _mineExplosion;
+        [SerializeField] private GameObject _mineExplosionPrefub;
         [SerializeField] private GameObject _minePreExplosionPrefub;
         private GameObject _currentPreExplosion;
 
@@ -57,7 +58,7 @@ namespace LernUnityAdventure_m22_23
 
         private void PlayExplosionSfx()
         {
-            AudioSource.PlayClipAtPoint(_mineExplosion.clip, _delayedExplosion.transform.position, _mineExplosion.volume);
+            Instantiate(_mineExplosionPrefub, _delayedExplosion.transform.position, Quaternion.identity);
         }
 
         private GameObject PlayClipAtPoint(GameObject audioSourcePrefab, Vector3 position)
