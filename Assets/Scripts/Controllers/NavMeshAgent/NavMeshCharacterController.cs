@@ -25,7 +25,7 @@ namespace LernUnityAdventure_m22_23
         {
             if (Input.GetMouseButtonDown(MoveMouseButton))
             {
-                if (_character.IsLife == false) return;
+                if (_character.CanMove() == false) return;
 
                 Ray ray = _utility.GetRayFromScreen();
 

@@ -5,6 +5,7 @@ namespace LernUnityAdventure_m22_23
     public class CharacterView : MonoBehaviour
     {
         private static readonly int _isWalkingKey = Animator.StringToHash("IsWalking");
+        private static readonly int _isJumpProcessKey = Animator.StringToHash("InJumpProcess");
         private static readonly int _takeDamageKey = Animator.StringToHash("TakeDamage");
         private static readonly int _dieKey = Animator.StringToHash("Die");
         private static readonly string _injuredLayerName = "Injured Layer";
@@ -14,14 +15,15 @@ namespace LernUnityAdventure_m22_23
         [SerializeField] private Character _character;
         [SerializeField] private AudioSource _characterWalk;
 
-        private Animator _animator;
+        [SerializeField] private Animator _animator;
+        [SerializeField] private AnimationCurve _jumpCurve;
 
         private bool _isPlayedInjure = false;
         private bool _isPlayedDie = false;
 
         public void Awake()
         {
-            _animator = GetComponent<Animator>();
+            _character.SetAnimationCurve(_jumpCurve);
         }
 
         public void Update()
@@ -39,6 +41,15 @@ namespace LernUnityAdventure_m22_23
             else
             {
                 StopWalking();
+            }
+
+            if (_character.IsJumping)
+            {
+                StartJumping();
+            }
+            else
+            {
+                StopJumping();
             }
 
             if (_isPlayedInjure == false && _character.PercentageHealth <= InjuredHealthPercentThreshold)
@@ -70,14 +81,24 @@ namespace LernUnityAdventure_m22_23
             }
         }
 
+        private void StartWalking()
+        {
+            _animator.SetBool(_isWalkingKey, true);
+        }
+
         private void StopWalking()
         {
             _animator.SetBool(_isWalkingKey, false);
         }
 
-        private void StartWalking()
+        private void StartJumping()
         {
-            _animator.SetBool(_isWalkingKey, true);
+            _animator.SetBool(_isJumpProcessKey, true);
+        }
+
+        private void StopJumping()
+        {
+            _animator.SetBool(_isJumpProcessKey, false);
         }
 
         public void PlayTakeDamage()

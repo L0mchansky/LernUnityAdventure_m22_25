@@ -3210,6 +3210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 31
+  _jumpSpeed: 8
   _characterView: {fileID: 1229029196}
   _navMeshAgent: {fileID: 384886729}
 --- !u!136 &384886728
@@ -3250,7 +3251,7 @@ NavMeshAgent:
   avoidancePriority: 50
   m_AngularSpeed: 999
   m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
+  m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
@@ -7748,13 +7749,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_StartPoint: {x: 0, y: 0, z: -5.1020355}
-  m_EndPoint: {x: 0, y: 0, z: 5.1020355}
+  m_StartPoint: {x: 0, y: 0, z: -5.116234}
+  m_EndPoint: {x: 0, y: 0, z: 5.0892982}
   m_Width: 7
   m_CostModifier: -1
   m_Bidirectional: 1
   m_AutoUpdatePosition: 1
-  m_Area: 0
+  m_Area: 2
 --- !u!1001 &1082503928
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8636,6 +8637,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _character: {fileID: 384886725}
   _characterWalk: {fileID: 905751720}
+  _animator: {fileID: 1229029197}
+  _jumpCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 26.68466
+      outSlope: 26.68466
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.058333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 5
+      inSlope: -0.4958439
+      outSlope: -0.4958439
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -11.440325
+      outSlope: -11.440325
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.22500002
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!95 &1229029197
 Animator:
   serializedVersion: 5

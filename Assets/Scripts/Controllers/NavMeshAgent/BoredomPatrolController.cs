@@ -30,10 +30,9 @@ namespace LernUnityAdventure_m22_23
 
         protected override void UpdateLogic(float deltaTime)
         {
-            if (!_character.IsLife)
-                return;
+            if (_character.CanMove() == false) return;
 
-            if (!ReachedDestination())
+            if (ReachedDestination() == false)
                 return;
 
             TrySetNextPatrolDestination();
