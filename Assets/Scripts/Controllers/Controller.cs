@@ -8,6 +8,8 @@
 
         public virtual void Disable() => _isEnable = false;
 
+        public bool IsEnable => _isEnable;
+
         public void Update(float deltatime)
         {
             if (_isEnable == false)
