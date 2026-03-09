@@ -27,8 +27,8 @@ namespace LernUnityAdventure_m22_23
 
         private void SetDestinationFlag(Vector3 destination)
         {
-            Vector3 flagPosition = new Vector3(destination.x, transform.position.y, destination.z);
-            transform.position = flagPosition;
+            //Vector3 flagPosition = new Vector3(destination.x, transform.position.y, destination.z);
+            transform.position = destination;
             _flagView.SetActive(true);
         }
     }
