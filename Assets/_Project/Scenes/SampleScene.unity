@@ -3037,7 +3037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db778241487cceb41b3c40aaf2df489f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 31
+  _maxHealth: 1
   _jumpSpeed: 8
   _characterView: {fileID: 1229029196}
   _navMeshAgent: {fileID: 384886729}
@@ -8248,6 +8248,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _timeToDissolved: 5
+  _renderers: []
 --- !u!95 &1229029197
 Animator:
   serializedVersion: 5

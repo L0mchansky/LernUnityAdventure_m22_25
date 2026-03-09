@@ -11,6 +11,14 @@ namespace LernUnityAdventure_m22_23
 
         public void Update()
         {
+            if (_character == null) return;
+            if (_character.IsLife == false) return;
+
+            ObserveToCharacter();
+        }
+
+        private void ObserveToCharacter()
+        {
             Vector3 destination = _character.Destination;
 
             float distance = Vector3.Distance(_character.transform.position, destination);

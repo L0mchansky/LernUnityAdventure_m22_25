@@ -1,4 +1,7 @@
+using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace LernUnityAdventure_m22_23
 {
@@ -9,6 +12,7 @@ namespace LernUnityAdventure_m22_23
         private static readonly int _takeDamageKey = Animator.StringToHash("TakeDamage");
         private static readonly int _dieKey = Animator.StringToHash("Die");
         private static readonly string _injuredLayerName = "Injured Layer";
+        private static readonly string _shaderDissolveKey = "_Edge";
 
         private const float InjuredHealthPercentThreshold = 30f;
 
@@ -18,12 +22,16 @@ namespace LernUnityAdventure_m22_23
         [SerializeField] private Animator _animator;
         [SerializeField] private AnimationCurve _jumpCurve;
 
+        [SerializeField] private float _timeToDissolved;
+        [SerializeField] private SkinnedMeshRenderer[] _renderers;
+
         private bool _isPlayedInjure = false;
         private bool _isPlayedDie = false;
 
         public void Awake()
         {
             _character.SetAnimationCurve(_jumpCurve);
+            _renderers = GetComponentsInChildren<SkinnedMeshRenderer>();
         }
 
         public void Update()
@@ -101,18 +109,13 @@ namespace LernUnityAdventure_m22_23
             _animator.SetBool(_isJumpProcessKey, false);
         }
 
-        public void PlayTakeDamage()
-        {
-            _animator.SetTrigger(_takeDamageKey);
-        }
-
-        public void PlayInjured()
+        private void PlayInjured()
         {
             _isPlayedInjure = true;
             ChangeInjured(1);
         }
 
-        public void StopInjured()
+        private void StopInjured()
         {
             _isPlayedInjure = false;
             ChangeInjured(0);
@@ -124,10 +127,36 @@ namespace LernUnityAdventure_m22_23
             _animator.SetLayerWeight(injuredLayerIndex, layerWeight);
         }
 
-        public void PlayDie()
+        private void PlayDie()
         {
             _isPlayedDie = true;
             _animator.SetTrigger(_dieKey);
+            StartCoroutine(Dissolve());
+        }
+
+        private IEnumerator Dissolve()
+        {
+            float elapsedTime = 0f;
+
+            while (elapsedTime < _timeToDissolved)
+            {
+                elapsedTime += Time.deltaTime;
+                float edge = elapsedTime / _timeToDissolved;
+
+                foreach (var renderer in _renderers)
+                {
+                    renderer.material.SetFloat(_shaderDissolveKey, edge);
+                }
+
+                yield return null;
+            }
+
+            Destroy(_character.gameObject);
+        }
+
+        public void PlayTakeDamage()
+        {
+            _animator.SetTrigger(_takeDamageKey);
         }
     }
 }

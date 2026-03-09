@@ -38,6 +38,9 @@ namespace LernUnityAdventure_m22_23
 
         public void Update()
         {
+            if (_character == null) return;
+            if (_character.IsLife == false) return;
+
             HandleControllerSwitching();
             _switchController.Update(Time.deltaTime);
         }
