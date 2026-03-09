@@ -190,6 +190,9 @@ MonoBehaviour:
     type: 3}
   _minePreExplosionPrefub: {fileID: 7785410276452698834, guid: f92ef73198618d849b6dc08f1b20a2e5,
     type: 3}
+  _pulseSpeed: 8
+  _minScale: 1
+  _maxScale: 1.5
 --- !u!4 &7864512971250755197 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b69ab7dc4a09f094885bf950a65c44c3,

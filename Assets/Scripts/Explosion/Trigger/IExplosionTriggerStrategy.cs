@@ -6,5 +6,6 @@ namespace LernUnityAdventure_m24_25
     {
         void Initialize(DelayedExplosion explosion);
         void Tick(float deltaTime);
+        float GetTimeToExplosion();
     }
 }

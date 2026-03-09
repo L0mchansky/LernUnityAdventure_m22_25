@@ -38,5 +38,9 @@ namespace LernUnityAdventure_m24_25
             _explosion.Explode();
             _runCoroutine = null;
         }
+        public float GetTimeToExplosion()
+        {
+            return _time;
+        }
     }
 }

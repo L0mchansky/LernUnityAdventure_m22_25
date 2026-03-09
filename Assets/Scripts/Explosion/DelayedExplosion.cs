@@ -95,5 +95,10 @@ namespace LernUnityAdventure_m22_23
 
             _isExploded = true;
         }
+
+        public float GetTimeToExplosion()
+        {
+            return _trigger.GetTimeToExplosion();
+        }
     }
 }

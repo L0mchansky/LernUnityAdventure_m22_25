@@ -26,5 +26,10 @@ namespace LernUnityAdventure_m24_25
             if (_time <= 0f)
                 _explosion.Explode();
         }
+
+        public float GetTimeToExplosion()
+        {
+            return _time;
+        }
     }
 }
