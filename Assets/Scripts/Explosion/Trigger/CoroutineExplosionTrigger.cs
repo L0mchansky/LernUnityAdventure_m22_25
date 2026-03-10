@@ -32,15 +32,16 @@ namespace LernUnityAdventure_m24_25
             }
         }
 
+        public float GetTimeToExplosion()
+        {
+            return _time;
+        }
+
         private IEnumerator Run()
         {
             yield return new WaitForSeconds(_time);
             _explosion.Explode();
             _runCoroutine = null;
-        }
-        public float GetTimeToExplosion()
-        {
-            return _time;
         }
     }
 }

@@ -40,6 +40,11 @@ namespace LernUnityAdventure_m22_23
             PlayAudio();
         }
 
+        public void PlayTakeDamage()
+        {
+            _animator.SetTrigger(_takeDamageKey);
+        }
+
         private void PlayAnimations()
         {
             if (_character.IsWalking)
@@ -152,11 +157,6 @@ namespace LernUnityAdventure_m22_23
             }
 
             Destroy(_character.gameObject);
-        }
-
-        public void PlayTakeDamage()
-        {
-            _animator.SetTrigger(_takeDamageKey);
         }
     }
 }

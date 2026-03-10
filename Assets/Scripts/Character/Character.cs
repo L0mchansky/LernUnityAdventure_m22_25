@@ -60,6 +60,29 @@ namespace LernUnityAdventure_m22_23
         {
             TakeDamage(data.Damage);
         }
+
+        public void OnHealing(float healingValue)
+        {
+            float newHealth = CurrentHealth + healingValue;
+            _componentHealth.SetHealth(newHealth);
+        }
+
+        public bool CanMove()
+        {
+            if (IsLife == false)
+                return false;
+
+            if (IsJumping)
+                return false;
+
+            return true;
+        }
+
+        public void SetAnimationCurve(AnimationCurve yOffSetCurve)
+        {
+            _agentJumper?.SetAnimationCurve(yOffSetCurve);
+        }
+
         private void OnWalking()
         {
             if (Velocity.magnitude >= VelocityMagnitudeThreshold)
@@ -70,12 +93,6 @@ namespace LernUnityAdventure_m22_23
             {
                 _isWalking = false;
             }
-        }
-
-        public void OnHealing(float healingValue)
-        {
-            float newHealth = CurrentHealth + healingValue;
-            _componentHealth.SetHealth(newHealth);
         }
 
         private void OnJumping()
@@ -96,22 +113,6 @@ namespace LernUnityAdventure_m22_23
 
             offMeshLinkData = default(OffMeshLinkData);
             return false;
-        }
-
-        public bool CanMove()
-        {
-            if (IsLife == false)
-                return false;
-
-            if (IsJumping)
-                return false;
-
-            return true;
-        }
-
-        public void SetAnimationCurve(AnimationCurve yOffSetCurve)
-        {
-            _agentJumper?.SetAnimationCurve(yOffSetCurve);
         }
     }
 }

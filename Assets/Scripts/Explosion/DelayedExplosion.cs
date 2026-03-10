@@ -35,21 +35,6 @@ namespace LernUnityAdventure_m22_23
             }
         }
 
-        private IExplosionTriggerStrategy CreateTrigger()
-        {
-            switch (_triggerType)
-            {
-                case ExplosionTriggerTypes.Timer:
-                    return new TimerExplosionTrigger(_countdownToExplosion);
-
-                case ExplosionTriggerTypes.Coroutine:
-                    return new CoroutineExplosionTrigger(this, _countdownToExplosion);
-
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
-
         public void Update()
         {
             if (_isExploded == true)
@@ -99,6 +84,21 @@ namespace LernUnityAdventure_m22_23
         public float GetTimeToExplosion()
         {
             return _trigger.GetTimeToExplosion();
+        }
+
+        private IExplosionTriggerStrategy CreateTrigger()
+        {
+            switch (_triggerType)
+            {
+                case ExplosionTriggerTypes.Timer:
+                    return new TimerExplosionTrigger(_countdownToExplosion);
+
+                case ExplosionTriggerTypes.Coroutine:
+                    return new CoroutineExplosionTrigger(this, _countdownToExplosion);
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
     }
 }

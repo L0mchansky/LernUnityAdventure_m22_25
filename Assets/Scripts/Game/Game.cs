@@ -19,7 +19,7 @@ namespace LernUnityAdventure_m22_23
         private Controller _navMeshCharacterController;
         private Controller _boredomPatrolController;
 
-        private void Awake()
+        public void Awake()
         {
             NavMeshCharacterController navMeshCharacterController = new NavMeshCharacterController(_character);
             BoredomPatrolController boredomPatrolController = new BoredomPatrolController(

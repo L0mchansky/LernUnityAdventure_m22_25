@@ -10,7 +10,7 @@ namespace LernUnityAdventure_m24_25
 
         private AudioHandler _audioHandler;
 
-        private void Awake()
+        public void Awake()
         {
             _audioHandler = new AudioHandler(_audioMixer);
         }

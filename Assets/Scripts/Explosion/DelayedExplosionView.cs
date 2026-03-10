@@ -35,6 +35,7 @@ namespace LernUnityAdventure_m22_23
             if (_delayedExplosion.IsExplodes && _currentPreExplosion == null)
             {
                 PlayPreExplosionSfx();
+                StartCoroutine(PlayPreExplosionShader());
             }
 
             if (_delayedExplosion.IsExploded)
@@ -64,13 +65,13 @@ namespace LernUnityAdventure_m22_23
         private void PlayPreExplosionSfx()
         {
             _currentPreExplosion = PlayClipAtPoint(_minePreExplosionPrefub, _delayedExplosion.transform.position);
-            StartCoroutine(PlayPreExplosionShader());
         }
 
         private void StopPreExplosionSfx()
         {
             _currentPreExplosion.GetComponent<AudioSource>().Stop();
             Destroy(_currentPreExplosion);
+            _currentPreExplosion = null;
         }
 
         private void PlayExplosionSfx()
