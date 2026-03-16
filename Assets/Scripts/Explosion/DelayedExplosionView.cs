@@ -13,8 +13,8 @@ namespace LernUnityAdventure_m22_23
         [SerializeField] private GameObject _particlePrefab;
         [SerializeField] private DelayedExplosion _delayedExplosion;
 
-        [SerializeField] private GameObject _mineExplosionPrefub;
-        [SerializeField] private GameObject _minePreExplosionPrefub;
+        [SerializeField] private GameObject _mineExplosionAudioPrefub;
+        [SerializeField] private GameObject _minePreExplosionAudioPrefub;
         [SerializeField] private float _pulseSpeed;
         [SerializeField] private float _minScale;
         [SerializeField] private float _maxScale;
@@ -64,7 +64,7 @@ namespace LernUnityAdventure_m22_23
 
         private void PlayPreExplosionSfx()
         {
-            _currentPreExplosion = PlayClipAtPoint(_minePreExplosionPrefub, _delayedExplosion.transform.position);
+            _currentPreExplosion = PlayClipAtPoint(_minePreExplosionAudioPrefub, _delayedExplosion.transform.position);
         }
 
         private void StopPreExplosionSfx()
@@ -76,7 +76,7 @@ namespace LernUnityAdventure_m22_23
 
         private void PlayExplosionSfx()
         {
-            Instantiate(_mineExplosionPrefub, _delayedExplosion.transform.position, Quaternion.identity);
+            Instantiate(_mineExplosionAudioPrefub, _delayedExplosion.transform.position, Quaternion.identity);
         }
 
         private GameObject PlayClipAtPoint(GameObject audioSourcePrefab, Vector3 position)
