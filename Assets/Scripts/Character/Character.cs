@@ -20,8 +20,11 @@ namespace LernUnityAdventure_m22_23
 
         public bool IsWalking => _isWalking;
         public bool IsJumping => _agentJumper.InProcess;
+        public AgentJumper AgentJumper => _agentJumper;
         public Vector3 Destination => _navMeshAgent.destination;
         public Vector3 Velocity => _navMeshAgent.velocity;
+        public OffMeshLinkData CurrentOffMeshLinkData => _navMeshAgent.currentOffMeshLinkData;
+        public bool IsOnOffMeshLink => _navMeshAgent.isOnOffMeshLink;
         public float CurrentHealth => _componentHealth.CurrentHealth;
         public float PercentageHealth => _componentHealth.PercentageHealth;
         public bool IsLife => _componentHealth.IsLife;
@@ -35,7 +38,6 @@ namespace LernUnityAdventure_m22_23
         public void Update()
         {
             OnWalking();
-            OnJumping();
         }
 
         public void SetDestination(Vector3 value)
@@ -93,26 +95,6 @@ namespace LernUnityAdventure_m22_23
             {
                 _isWalking = false;
             }
-        }
-
-        private void OnJumping()
-        {
-            if (InOnNavMeshLink(out OffMeshLinkData offMeshLinkData))
-            {
-                _agentJumper.Jump(offMeshLinkData);
-            }
-        }
-
-        private bool InOnNavMeshLink(out OffMeshLinkData offMeshLinkData)
-        {
-            if (_navMeshAgent.isOnOffMeshLink)
-            {
-                offMeshLinkData = _navMeshAgent.currentOffMeshLinkData;
-                return true;
-            }
-
-            offMeshLinkData = default(OffMeshLinkData);
-            return false;
         }
     }
 }

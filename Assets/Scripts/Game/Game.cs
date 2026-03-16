@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using LernUnityAdventure_m24_25;
+using UnityEngine;
 
 namespace LernUnityAdventure_m22_23
 {
@@ -18,22 +19,22 @@ namespace LernUnityAdventure_m22_23
         private const float DestinationChangeThreshold = 0.3f;
         private Controller _navMeshCharacterController;
         private Controller _boredomPatrolController;
+        private Controller _jumpingController;
 
         public void Awake()
         {
-            NavMeshCharacterController navMeshCharacterController = new NavMeshCharacterController(_character);
-            BoredomPatrolController boredomPatrolController = new BoredomPatrolController(
+            _navMeshCharacterController = new NavMeshCharacterController(_character);
+            _boredomPatrolController = new BoredomPatrolController(
                     _character,
                     _patrolRadius,
                     _arrivalThreshold,
                     _retryDelayAfterFail
                     );
+            _jumpingController = new JumpingController(_character);
+            _switchController = new SwitchController(_navMeshCharacterController, _boredomPatrolController);
 
-            _navMeshCharacterController = navMeshCharacterController;
-            _boredomPatrolController = boredomPatrolController;
-
-            _switchController = new SwitchController(navMeshCharacterController, boredomPatrolController);
             _switchController.Enable();
+            _jumpingController.Enable();
         }
 
         public void Update()
@@ -43,6 +44,7 @@ namespace LernUnityAdventure_m22_23
 
             HandleControllerSwitching();
             _switchController.Update(Time.deltaTime);
+            _jumpingController.Update(Time.deltaTime);
         }
 
         private void HandleControllerSwitching()
