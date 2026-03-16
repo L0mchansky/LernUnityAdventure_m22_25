@@ -3,18 +3,15 @@ using UnityEngine;
 
 namespace LernUnityAdventure_m24_25
 {
-    public class MedkitView
+    public class MedkitView: MonoBehaviour
     {
-        private Medkit _medkit;
-        private GameObject _particlePrefab;
-        private GameObject _medkitUseAudioPrefab;
+        [SerializeField] private GameObject _particlePrefab;
+        [SerializeField] private GameObject _medkitUseAudioPrefab;
+        [SerializeField] private Medkit _medkit;
 
-        public MedkitView(Medkit medkit, MonoBehaviour runner, GameObject particlePrefab, GameObject medkitUseAudioPrefab)
+        public void Awake()
         {
-            _medkit = medkit;
-            _particlePrefab = particlePrefab;
-            _medkitUseAudioPrefab = medkitUseAudioPrefab;
-            runner.StartCoroutine(Run());
+            StartCoroutine(Run());
         }
 
         private IEnumerator Run() {

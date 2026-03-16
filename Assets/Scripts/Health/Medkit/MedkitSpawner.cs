@@ -7,11 +7,8 @@ namespace LernUnityAdventure_m24_25
 {
     public class MedkitSpawner : MonoBehaviour
     {
-        [SerializeField] private GameObject _particlePrefab;
-        [SerializeField] private GameObject _medkitUseAudioPrefab;
-
         [SerializeField] private Character _character;
-        [SerializeField] private GameObject _medkitPrefab;
+        [SerializeField] private Medkit _medkitPrefab;
         [SerializeField] private float _spawnHeight = 1f;
 
         [SerializeField] private float _timeToSpawn = 3f;
@@ -74,11 +71,9 @@ namespace LernUnityAdventure_m24_25
             {
                 yield return new WaitForSeconds(_timeToSpawn);
 
-                Medkit medkit = Instantiate(_medkitPrefab).GetComponent<Medkit>();
+                Medkit medkit = Instantiate(_medkitPrefab);
                 medkit.Initialize(_healingValue);
                 medkit.transform.position = MedkitSpawnPoint();
-
-                MedkitView medkitView = new MedkitView(medkit, this, _particlePrefab, _medkitUseAudioPrefab);
 
                 _medkits.Add(medkit);
             }

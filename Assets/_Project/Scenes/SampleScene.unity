@@ -13711,12 +13711,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec3abba9c0d4107499c36975197d0914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particlePrefab: {fileID: 479050328454720859, guid: 721273664893f1740827a987f8994411,
-    type: 3}
-  _medkitUseAudioPrefab: {fileID: 8067484012861979988, guid: e7464e0a1a6cc614587de4ee91393c8a,
-    type: 3}
   _character: {fileID: 384886725}
-  _medkitPrefab: {fileID: 223777631969810094, guid: cfb5ac287e53b8a46b25dc51f8aad11a,
+  _medkitPrefab: {fileID: 5004546287140687411, guid: cfb5ac287e53b8a46b25dc51f8aad11a,
     type: 3}
   _spawnHeight: 1
   _timeToSpawn: 5

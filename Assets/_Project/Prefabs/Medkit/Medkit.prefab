@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 2656101569983990423}
   - component: {fileID: 3552127379469438526}
   - component: {fileID: 6692081972269510758}
+  - component: {fileID: 4896859412221790129}
   m_Layer: 0
   m_Name: MedkitView
   m_TagString: Untagged
@@ -186,6 +187,23 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!114 &4896859412221790129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4108904863828567793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15460beb33e28ee448edd79f76dc1c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particlePrefab: {fileID: 479050328454720859, guid: 721273664893f1740827a987f8994411,
+    type: 3}
+  _medkitUseAudioPrefab: {fileID: 8067484012861979988, guid: e7464e0a1a6cc614587de4ee91393c8a,
+    type: 3}
+  _medkit: {fileID: 5004546287140687411}
 --- !u!1 &8434084081776042245
 GameObject:
   m_ObjectHideFlags: 0
