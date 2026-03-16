@@ -20,7 +20,6 @@ namespace LernUnityAdventure_m22_23
         [SerializeField] private AudioSource _characterWalk;
 
         [SerializeField] private Animator _animator;
-        [SerializeField] private AnimationCurve _jumpCurve;
 
         [SerializeField] private float _timeToDissolved;
         [SerializeField] private SkinnedMeshRenderer[] _renderers;
@@ -30,7 +29,6 @@ namespace LernUnityAdventure_m22_23
 
         public void Awake()
         {
-            _character.SetAnimationCurve(_jumpCurve);
             _renderers = GetComponentsInChildren<SkinnedMeshRenderer>();
         }
 

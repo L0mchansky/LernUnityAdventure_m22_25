@@ -11,6 +11,7 @@ namespace LernUnityAdventure_m22_23
         [SerializeField] private float _jumpSpeed;
         [SerializeField] private CharacterView _characterView;
         [SerializeField] private NavMeshAgent _navMeshAgent;
+        [SerializeField] private AnimationCurve _jumpCurve;
 
         private ComponentHealth _componentHealth;
         private AgentJumper _agentJumper;
@@ -33,6 +34,8 @@ namespace LernUnityAdventure_m22_23
         {
             _componentHealth = new ComponentHealth(_maxHealth);
             _agentJumper = new AgentJumper(_jumpSpeed, _navMeshAgent, this);
+
+            _agentJumper.SetAnimationCurve(_jumpCurve);
         }
 
         public void Update()
@@ -78,11 +81,6 @@ namespace LernUnityAdventure_m22_23
                 return false;
 
             return true;
-        }
-
-        public void SetAnimationCurve(AnimationCurve yOffSetCurve)
-        {
-            _agentJumper?.SetAnimationCurve(yOffSetCurve);
         }
 
         private void OnWalking()
